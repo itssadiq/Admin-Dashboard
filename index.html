@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Admin Login</title>
+    <link rel="stylesheet" href="styles/login.css" />
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.0.0/dist/umd/supabase.min.js"></script>
+  </head>
+  <body>
+    <div class="main">
+      <div class="header">
+        <h1>Admin Dashboard</h1>
+        <p>Sign in to manage students applications</p>
+      </div>
+
+      <form action="">
+        <div class="form-group">
+          <label for="emailAddress">Email addres</label>
+          <input
+            type="text"
+            id="emailAddress"
+            class="form-input email-address"
+            required
+          />
+        </div>
+
+        <div class="form-group">
+          <label for="password">Password</label>
+          <input
+            type="password"
+            id="password"
+            class="form-input password"
+            required
+          />
+        </div>
+
+        <div class="checkbox">
+          <input type="checkbox" name="" id="remember" />
+          <label for="remember">Remember me</label>
+        </div>
+
+        <button type="submit" class="sign-in-button">Sign in</button>
+      </form>
+    </div>
+
+    <script src="scripts/login.js" type="module"></script>
+  </body>
+</html>
