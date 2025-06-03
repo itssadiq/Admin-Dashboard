@@ -15,3 +15,13 @@ export async function fetchAdminCredentialsFromDB() {
 
   return admins;
 }
+
+export async function fetchApplicationsDetailsFromDB() {
+  const { data, error } = await supabase.from("students-applications").select();
+
+  if (error) {
+    throw error;
+  }
+
+  return data;
+}
