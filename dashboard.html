@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Admin Dashboard</title>
+    <link rel="stylesheet" href="styles/dashboard.css" />
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.0.0/dist/umd/supabase.min.js"></script>
+  </head>
+  <body>
+    <div class="main">
+      <div class="sidebar">
+        <h2 class="sidebar-heading">Admin Portal</h2>
+        <div class="links">
+          <a href="#">Dashboard</a>
+          <a href="#">Appliations</a>
+          <a href="#">Settings</a>
+        </div>
+      </div>
+      <div class="dash-body">
+        <div class="navbar">
+          <h3>AD</h3>
+        </div>
+
+        <h2 class="dash-heading">Dashboard</h2>
+        <div class="status-div">
+          <div class="status">
+            <p class="status-title">Total Applications</p>
+            <h2 class="status-count">250</h2>
+          </div>
+          <div class="status">
+            <p class="status-title">Pending Reviews</p>
+            <h2 class="status-count">15</h2>
+          </div>
+          <div class="status">
+            <p class="status-title">Approved</p>
+            <h2 class="status-count">100</h2>
+          </div>
+          <div class="status">
+            <p class="status-title">Rejected</p>
+            <h2 class="status-count">5</h2>
+          </div>
+        </div>
+      </div>
+    </div>
+    <script src="scripts/dashboard.js" type="module"></script>
+  </body>
+</html>
