@@ -82,3 +82,50 @@ body {
 .status-count {
   font-weight: 600;
 }
+
+.filters {
+  display: flex;
+  gap: 30px;
+  justify-content: space-around;
+  width: 95%;
+  margin: 0 auto;
+  box-shadow: 0 4px 4px rgba(0, 0, 0, 0.1);
+  border-radius: 5px;
+  padding: 15px 0px;
+}
+
+.filter {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+
+.filter select {
+  width: 200px;
+  padding: 10px 15px;
+  border: none;
+}
+
+.applications-data {
+  width: 100%;
+  margin: 20px auto 0 auto;
+}
+
+table {
+  width: 100%;
+  margin: 0 auto;
+  font-size: 0.8rem;
+}
+
+td {
+  padding: 5px;
+}
+
+tr select {
+  border: none;
+  display: none;
+}
+
+.edit-button {
+  cursor: pointer;
+}
