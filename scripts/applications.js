@@ -1,4 +1,7 @@
-import { fetchApplicationsDetailsFromDB } from "../backend/database.js";
+import {
+  fetchApplicationsDetailsFromDB,
+  updateApplicationStatusInDB,
+} from "../backend/database.js";
 
 document.addEventListener("DOMContentLoaded", async () => {
   let applications;
@@ -10,12 +13,14 @@ document.addEventListener("DOMContentLoaded", async () => {
   }
 
   let tableHTML = "";
-  applications.forEach((application) => {
-    console.log(application);
+  applications.forEach((application, index) => {
+    const applicationID = application.id;
+    const trimmed = applicationID.substring(0, 7);
+    const appID = `APP-${trimmed}`;
 
     const html = `
             <tr>
-              <td>${application.id}</td>
+              <td>${appID}</td>
               <td>
                 <p>${application.full_name}</p>
                 <p>${application.email}</p>
@@ -25,8 +30,8 @@ document.addEventListener("DOMContentLoaded", async () => {
               <td>08-06-2025</td>
               <td>${application.application_status}</td>
               <td>
-                <label for="status" class="edit-button">Edit</label>
-                <select name="" id="status" class="edit-status">
+                <label for="status${index}" class="edit-button" data-index="${index}">Edit</label>
+                <select name="" id="status${index}" class="edit-status" data-index="${index}">
                   <option value="" selected>Status</option>
                   <option value="Approved">Approve</option>
                   <option value="Rejected">Reject</option>
@@ -40,13 +45,40 @@ document.addEventListener("DOMContentLoaded", async () => {
   });
 
   document.querySelector("table").innerHTML += tableHTML;
-  //   const editButtonEl = document.querySelector(".edit-button");
+  const editButtonEl = document.querySelectorAll(".edit-button");
 
-  //   editButtonEl.addEventListener("click", () => {
-  //     const statusEL = document.querySelector(".edit-status");
+  editButtonEl.forEach((button) => {
+    button.addEventListener("click", () => {
+      const statusEL = document.querySelectorAll(".edit-status");
 
-  //     statusEL.style.display = "block";
+      statusEL.forEach((status) => {
+        if (status.dataset.index == button.dataset.index) {
+          button.style.display = "none";
+          status.style.display = "block";
 
-  //     editButtonEl.style.display = "none";
-  //   });
+          const index = status.dataset.index;
+
+          status.addEventListener("change", () => {
+            const updatedStatus = status.value;
+
+            const application = applications[index];
+
+            const id = application.id;
+
+            try {
+              updateApplicationStatusInDB(updatedStatus, id);
+              setTimeout(() => {
+                location.reload();
+              }, 500);
+            } catch (error) {
+              console.error(
+                "Error updating application status:",
+                error.message
+              );
+            }
+          });
+        }
+      });
+    });
+  });
 });

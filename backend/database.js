@@ -25,3 +25,14 @@ export async function fetchApplicationsDetailsFromDB() {
 
   return data;
 }
+
+export async function updateApplicationStatusInDB(updatedStatus, id) {
+  const { error } = await supabase
+    .from("students-applications")
+    .update({ application_status: updatedStatus })
+    .eq("id", id);
+
+  if (error) {
+    throw error;
+  }
+}
