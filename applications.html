@@ -13,8 +13,8 @@
       <div class="sidebar">
         <h2 class="sidebar-heading">Admin Portal</h2>
         <div class="links">
-          <a href="#">Dashboard</a>
-          <a href="#">Appliations</a>
+          <a href="dashboard.html">Dashboard</a>
+          <a href="applications.html">Appliations</a>
           <a href="#">Settings</a>
         </div>
       </div>
@@ -29,8 +29,8 @@
         <div class="filters">
           <div class="filter">
             <label for="filter-status">Status</label>
-            <select name="" id="filter-status">
-              <option value="" selected>All Statuses</option>
+            <select name="" id="filter-status" class="status-filter">
+              <option value="All Statuses" selected>All Statuses</option>
               <option value="Pending">Pending</option>
               <option value="Rejected">Rejected</option>
               <option value="Approved">Approved</option>
@@ -38,7 +38,7 @@
           </div>
           <div class="filter">
             <label for="program1">Program 01</label>
-            <select name="" id="program1" required>
+            <select name="" id="program1" class="program1-filter">
               <option value="" selected>Select a program</option>
               <option value="Artificial Intelligence">
                 Artificial Intelligence
@@ -50,7 +50,7 @@
           </div>
           <div class="filter">
             <label for="program2">Program 02</label>
-            <select name="" id="program2" required>
+            <select name="" id="program2" class="program2-filter">
               <option value="" selected>Select a program</option>
               <option value="Artificial Intelligence">
                 Artificial Intelligence
@@ -63,37 +63,7 @@
         </div>
 
         <div class="applications-data">
-          <table>
-            <tr>
-              <td>APPLICATION ID</td>
-              <td>NAME</td>
-              <td>PROGRAM1</td>
-              <td>PROGRAM2</td>
-              <td>DATE APPLIED</td>
-              <td>STATUS</td>
-              <td>CHANGE STATUS</td>
-            </tr>
-            <!-- <tr>
-              <td>123456789</td>
-              <td>
-                <p>Sadiq Ali</p>
-                <p>sadiqalishaikh009@gmail.com</p>
-              </td>
-              <td>Web Development</td>
-              <td>Artificial Intelligence</td>
-              <td>08-06-2025</td>
-              <td>Pending</td>
-              <td>
-                <label for="status" class="edit-button">Edit</label>
-                <select name="" id="status" class="edit-status">
-                  <option value="" selected>Status</option>
-                  <option value="Approved">Approve</option>
-                  <option value="Rejected">Reject</option>
-                  <option value="Pending">Pending</option>
-                </select>
-              </td>
-            </tr> -->
-          </table>
+          <table></table>
         </div>
       </div>
     </div>

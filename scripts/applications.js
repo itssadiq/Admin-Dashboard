@@ -12,39 +12,8 @@ document.addEventListener("DOMContentLoaded", async () => {
     console.error("Error fetching data:", error.message);
   }
 
-  let tableHTML = "";
-  applications.forEach((application, index) => {
-    const applicationID = application.id;
-    const trimmed = applicationID.substring(0, 7);
-    const appID = `APP-${trimmed}`;
+  renderApplications();
 
-    const html = `
-            <tr>
-              <td>${appID}</td>
-              <td>
-                <p>${application.full_name}</p>
-                <p>${application.email}</p>
-              </td>
-              <td>${application.program_1}</td>
-              <td>${application.program_2}</td>
-              <td>08-06-2025</td>
-              <td>${application.application_status}</td>
-              <td>
-                <label for="status${index}" class="edit-button" data-index="${index}">Edit</label>
-                <select name="" id="status${index}" class="edit-status" data-index="${index}">
-                  <option value="" selected>Status</option>
-                  <option value="Approved">Approve</option>
-                  <option value="Rejected">Reject</option>
-                  <option value="Pending">Pending</option>
-                </select>
-              </td>
-            </tr>
-    `;
-
-    tableHTML += html;
-  });
-
-  document.querySelector("table").innerHTML += tableHTML;
   const editButtonEl = document.querySelectorAll(".edit-button");
 
   editButtonEl.forEach((button) => {
@@ -81,4 +50,108 @@ document.addEventListener("DOMContentLoaded", async () => {
       });
     });
   });
+
+  const statusFilter = document.querySelector(".status-filter");
+
+  statusFilter.addEventListener("change", () => {
+    const value = statusFilter.value;
+    let tableHTML = generateTableHead();
+
+    applications.forEach((application, index) => {
+      if (value === application.application_status) {
+        const html = generateApplicationsHTML(application, index);
+        tableHTML += html;
+        document.querySelector("table").innerHTML = tableHTML;
+      } else if (value === "All Statuses") {
+        renderApplications();
+      }
+    });
+  });
+
+  const program1Filter = document.querySelector(".program1-filter");
+
+  program1Filter.addEventListener("change", () => {
+    const program1Value = program1Filter.value;
+    let tableHTML = generateTableHead();
+
+    applications.forEach((application, index) => {
+      if (program1Value === application.program_1) {
+        const html = generateApplicationsHTML(application, index);
+        tableHTML += html;
+        document.querySelector("table").innerHTML = tableHTML;
+      }
+    });
+  });
+
+  const program2Filter = document.querySelector(".program2-filter");
+
+  program2Filter.addEventListener("change", () => {
+    const program2Value = program2Filter.value;
+    let tableHTML = generateTableHead();
+
+    applications.forEach((application, index) => {
+      if (program2Value === application.program_2) {
+        const html = generateApplicationsHTML(application, index);
+        tableHTML += html;
+        document.querySelector("table").innerHTML = tableHTML;
+      }
+    });
+  });
+
+  function renderApplications() {
+    let tableHTML = generateTableHead();
+    applications.forEach((application, index) => {
+      const html = generateApplicationsHTML(application, index);
+      tableHTML += html;
+    });
+
+    document.querySelector("table").innerHTML = tableHTML;
+  }
+
+  function generateApplicationsHTML(application, index) {
+    const applicationID = application.id;
+    const trimmed = applicationID.substring(0, 7);
+    const appID = `APP-${trimmed}`;
+
+    const html = `
+            <tr>
+              <td>${appID}</td>
+              <td>
+                <p>${application.full_name}</p>
+                <p>${application.email}</p>
+              </td>
+              <td>${application.program_1}</td>
+              <td>${application.program_2}</td>
+              <td>08-06-2025</td>
+              <td>${application.application_status}</td>
+              <td>
+                <label for="status${index}" class="edit-button" data-index="${index}">Edit</label>
+                <select name="" id="status${index}" class="edit-status" data-index="${index}">
+                  <option value="" selected>Status</option>
+                  <option value="Approved">Approve</option>
+                  <option value="Rejected">Reject</option>
+                  <option value="Pending">Pending</option>
+                </select>
+              </td>
+            </tr>
+    `;
+
+    return html;
+  }
+
+  function generateTableHead() {
+    let tableHTML = `
+      <tr>
+        <td>APPLICATION ID</td>
+        <td>NAME</td>
+        <td>PROGRAM1</td>
+        <td>PROGRAM2</td>
+        <td>DATE APPLIED</td>
+        <td>STATUS</td>
+        <td>CHANGE STATUS</td>
+      </tr>
+    `;
+
+    return tableHTML;
+  }
 });
