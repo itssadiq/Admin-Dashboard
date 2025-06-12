@@ -112,6 +112,11 @@ document.addEventListener("DOMContentLoaded", async () => {
     const applicationID = application.id;
     const trimmed = applicationID.substring(0, 7);
     const appID = `APP-${trimmed}`;
+    const applicationDate = application.created_at;
+    const cleanedDateStr = applicationDate.replace(/\.\d+/, "");
+    const date = new Date(cleanedDateStr);
+    const options = { year: "numeric", month: "long", day: "numeric" };
+    const formattedDate = date.toLocaleDateString("en-US", options);
 
     const html = `
             <tr>
@@ -122,7 +127,7 @@ document.addEventListener("DOMContentLoaded", async () => {
               </td>
               <td>${application.program_1}</td>
               <td>${application.program_2}</td>
-              <td>08-06-2025</td>
+              <td>${formattedDate}</td>
               <td>${application.application_status}</td>
               <td>
                 <label for="status${index}" class="edit-button" data-index="${index}">Edit</label>
