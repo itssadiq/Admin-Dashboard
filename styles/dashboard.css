@@ -42,10 +42,10 @@ body {
 .dash-body {
   height: 100vh;
   width: 80%;
+  overflow-y: scroll;
 }
 
 .navbar {
-  /* border-bottom: 1px solid black; */
   padding: 10px 20px;
   display: flex;
   justify-content: end;
@@ -118,7 +118,7 @@ table {
 }
 
 td {
-  padding: 5px;
+  padding: 10px;
 }
 
 tr select {
@@ -128,4 +128,17 @@ tr select {
 
 .edit-button {
   cursor: pointer;
+  color: #2c6dfc;
+}
+
+.application-id {
+  color: #2c6dfc;
+}
+
+.general {
+  color: #989ea8;
+}
+
+.name-status {
+  font-weight: 450;
 }

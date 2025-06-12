@@ -120,15 +120,15 @@ document.addEventListener("DOMContentLoaded", async () => {
 
     const html = `
             <tr>
-              <td>${appID}</td>
+              <td class="application-id">${appID}</td>
               <td>
-                <p>${application.full_name}</p>
-                <p>${application.email}</p>
+                <p class="name-status">${application.full_name}</p>
+                <p class="general">${application.email}</p>
               </td>
-              <td>${application.program_1}</td>
-              <td>${application.program_2}</td>
-              <td>${formattedDate}</td>
-              <td>${application.application_status}</td>
+              <td class="general">${application.program_1}</td>
+              <td class="general">${application.program_2}</td>
+              <td class="general">${formattedDate}</td>
+              <td class="name-status">${application.application_status}</td>
               <td>
                 <label for="status${index}" class="edit-button" data-index="${index}">Edit</label>
                 <select name="" id="status${index}" class="edit-status" data-index="${index}">
@@ -147,13 +147,12 @@ document.addEventListener("DOMContentLoaded", async () => {
   function generateTableHead() {
     let tableHTML = `
       <tr>
-        <td>APPLICATION ID</td>
-        <td>NAME</td>
-        <td>PROGRAM1</td>
-        <td>PROGRAM2</td>
-        <td>DATE APPLIED</td>
-        <td>STATUS</td>
-        <td>CHANGE STATUS</td>
+        <td class="general">APPLICATION ID</td>
+        <td class="general">NAME</td>
+        <td class="general">PROGRAM1</td>
+        <td class="general">PROGRAM2</td>
+        <td class="general">DATE APPLIED</td>
+        <td class="general">STATUS</td>
       </tr>
     `;
 
