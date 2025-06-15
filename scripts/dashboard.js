@@ -1,5 +1,10 @@
 import { fetchApplicationsDetailsFromDB } from "../backend/database.js";
 
+import { getAdmin, showSettings } from "./showSettings.js";
+
+const admin = getAdmin();
+showSettings(admin);
+
 document.addEventListener("DOMContentLoaded", async () => {
   let applications;
 

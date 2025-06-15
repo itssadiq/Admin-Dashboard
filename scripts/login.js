@@ -14,7 +14,8 @@ document.addEventListener("DOMContentLoaded", async () => {
   const passwordEl = document.getElementById("password");
 
   const signInButton = document.querySelector(".js-sign-in");
-  signInButton.addEventListener("click", (event) => {
+  const form = document.querySelector("form");
+  form.addEventListener("submit", (event) => {
     event.preventDefault();
 
     const email = emailEl.value;
@@ -26,20 +27,17 @@ document.addEventListener("DOMContentLoaded", async () => {
   function adminlogin(email, password) {
     let currentUser;
 
-    if (email == "" || password == "") {
-      alert("Inputs cannot be empty");
-    } else {
-      admins.forEach((admin) => {
-        if (admin.email_address === email) {
-          currentUser = admin;
-        }
-      });
-    }
+    admins.forEach((admin) => {
+      if (admin.email_address === email) {
+        currentUser = admin;
+      }
+    });
 
     if (currentUser.password === password) {
+      localStorage.setItem("admin", JSON.stringify(currentUser));
       window.location.href = "./dashboard.html";
     } else {
-      alert("wrong password");
+      alert("Wrong Email or Password");
     }
   }
 });

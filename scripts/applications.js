@@ -3,6 +3,11 @@ import {
   updateApplicationStatusInDB,
 } from "../backend/database.js";
 
+import { getAdmin, showSettings } from "./showSettings.js";
+
+const admin = getAdmin();
+showSettings(admin);
+
 document.addEventListener("DOMContentLoaded", async () => {
   let applications;
   try {
@@ -14,42 +19,7 @@ document.addEventListener("DOMContentLoaded", async () => {
 
   renderApplications();
 
-  const editButtonEl = document.querySelectorAll(".edit-button");
-
-  editButtonEl.forEach((button) => {
-    button.addEventListener("click", () => {
-      const statusEL = document.querySelectorAll(".edit-status");
-
-      statusEL.forEach((status) => {
-        if (status.dataset.index == button.dataset.index) {
-          button.style.display = "none";
-          status.style.display = "block";
-
-          const index = status.dataset.index;
-
-          status.addEventListener("change", () => {
-            const updatedStatus = status.value;
-
-            const application = applications[index];
-
-            const id = application.id;
-
-            try {
-              updateApplicationStatusInDB(updatedStatus, id);
-              setTimeout(() => {
-                location.reload();
-              }, 500);
-            } catch (error) {
-              console.error(
-                "Error updating application status:",
-                error.message
-              );
-            }
-          });
-        }
-      });
-    });
-  });
+  attachEventListenerToEditButton();
 
   const statusFilter = document.querySelector(".status-filter");
 
@@ -62,8 +32,10 @@ document.addEventListener("DOMContentLoaded", async () => {
         const html = generateApplicationsHTML(application, index);
         tableHTML += html;
         document.querySelector("table").innerHTML = tableHTML;
+        attachEventListenerToEditButton();
       } else if (value === "All Statuses") {
         renderApplications();
+        attachEventListenerToEditButton();
       }
     });
   });
@@ -79,6 +51,7 @@ document.addEventListener("DOMContentLoaded", async () => {
         const html = generateApplicationsHTML(application, index);
         tableHTML += html;
         document.querySelector("table").innerHTML = tableHTML;
+        attachEventListenerToEditButton();
       }
     });
   });
@@ -94,6 +67,7 @@ document.addEventListener("DOMContentLoaded", async () => {
         const html = generateApplicationsHTML(application, index);
         tableHTML += html;
         document.querySelector("table").innerHTML = tableHTML;
+        attachEventListenerToEditButton();
       }
     });
   });
@@ -157,5 +131,44 @@ document.addEventListener("DOMContentLoaded", async () => {
     `;
 
     return tableHTML;
+  }
+
+  function attachEventListenerToEditButton() {
+    const editButtonEl = document.querySelectorAll(".edit-button");
+
+    editButtonEl.forEach((button) => {
+      button.addEventListener("click", () => {
+        const statusEL = document.querySelectorAll(".edit-status");
+
+        statusEL.forEach((status) => {
+          if (status.dataset.index == button.dataset.index) {
+            button.style.display = "none";
+            status.style.display = "block";
+
+            const index = status.dataset.index;
+
+            status.addEventListener("change", () => {
+              const updatedStatus = status.value;
+
+              const application = applications[index];
+
+              const id = application.id;
+
+              try {
+                updateApplicationStatusInDB(updatedStatus, id);
+                setTimeout(() => {
+                  location.reload();
+                }, 500);
+              } catch (error) {
+                console.error(
+                  "Error updating application status:",
+                  error.message
+                );
+              }
+            });
+          }
+        });
+      });
+    });
   }
 });
