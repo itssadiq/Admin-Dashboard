@@ -36,3 +36,27 @@ export async function updateApplicationStatusInDB(updatedStatus, id) {
     throw error;
   }
 }
+
+export async function deleteAdminFromDB(id) {
+  const response = await supabase
+    .from("admin_credentials")
+    .delete()
+    .eq("id", id);
+}
+
+export async function addAdminToDB(
+  full_name,
+  email_address,
+  password,
+  designation
+) {
+  const { error } = await supabase
+    .from("admin_credentials")
+    .insert({ full_name, email_address, password, designation });
+
+  if (error) {
+    throw error;
+
+    return null;
+  }
+}

@@ -8,6 +8,52 @@
     <link rel="stylesheet" href="styles/dashboard.css" />
   </head>
   <body>
-    <script src="scripts/settings.js"></script>
+    <div class="overlay"></div>
+    <div class="main">
+      <div class="sidebar">
+        <h2 class="sidebar-heading">Admin Portal</h2>
+        <div class="links">
+          <a href="dashboard.html">Dashboard</a>
+          <a href="applications.html">Applications</a>
+          <a href="settings.html" class="settings-tab">Settings</a>
+        </div>
+      </div>
+
+      <div class="dash-body">
+        <div class="navbar">
+          <h3>AD</h3>
+        </div>
+        <h2 class="dash-heading">Settings</h2>
+
+        <table class="admins-details"></table>
+
+        <button class="add-new">Add new</button>
+      </div>
+    </div>
+
+    <div class="form">
+      <form action="" class="new-admin">
+        <div>
+          <label for="fullName">Full Name</label>
+          <input type="text" id="fullName" required />
+        </div>
+        <div>
+          <label for="email">Email Address</label>
+          <input type="email" id="email" required />
+        </div>
+        <div>
+          <label for="password">Password</label>
+          <input type="password" id="password" required />
+        </div>
+        <div>
+          <label for="designation">Designation</label>
+          <input type="text" id="designation" required />
+        </div>
+        <button type="submit">Add</button>
+        <button type="button" class="back-button">Back</button>
+      </form>
+    </div>
+
+    <script src="scripts/settings.js" type="module"></script>
   </body>
 </html>

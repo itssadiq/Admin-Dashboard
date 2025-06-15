@@ -142,3 +142,79 @@ tr select {
 .name-status {
   font-weight: 450;
 }
+
+.admins-details {
+  margin-bottom: 30px;
+}
+.add-new {
+  position: fixed;
+  right: 20px;
+  cursor: pointer;
+  border: none;
+  background-color: #155dfc;
+  color: white;
+  padding: 10px 15px;
+  border-radius: 5px;
+}
+
+.delete-button {
+  border: none;
+  color: #155dfc;
+  cursor: pointer;
+}
+
+.new-admin div {
+  display: flex;
+  flex-direction: column;
+  align-items: start;
+  gap: 5px;
+  margin-bottom: 10px;
+}
+
+.overlay {
+  position: fixed;
+  display: none;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(27, 7, 7, 0.6);
+  backdrop-filter: blur(5px);
+  z-index: 1000;
+}
+
+.form {
+  display: none;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background: white;
+  padding: 20px;
+  border-radius: 5px;
+  z-index: 1001;
+  width: 30%;
+  height: 63%;
+}
+
+.form input {
+  width: 100%;
+  padding: 5px 8px;
+  border: 1px solid lightgray;
+  border-radius: 5px;
+}
+
+.form button {
+  width: 100%;
+  padding: 10px 15px;
+  border-radius: 5px;
+  color: white;
+  background-color: #155dfc;
+  border: none;
+  margin-bottom: 10px;
+  cursor: pointer;
+}
+
+.settings-tab {
+  display: none;
+}

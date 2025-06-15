@@ -10,7 +10,5 @@ export function showSettings(admin) {
 
   if (adminName === "Sadiq Ali") {
     settings.style.display = "block";
-  } else {
-    settings.style.display = "none";
   }
 }
